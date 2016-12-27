@@ -28,13 +28,15 @@
     },
     "ubuntuOSVersion": {
       "type": "string",
-      "defaultValue": "14.04.2-LTS",
+      "defaultValue": "16.04-LTS",
       "allowedValues": [
         "14.04.2-LTS",
-        "15.04"
+        "15.04",
+		"16.04-LTS",
+		"16.10"
       ],
       "metadata": {
-        "description": "The Ubuntu version for the VM. This will pick a fully patched image of this given Ubuntu version. Allowed values: 14.04.2-LTS, 15.04."
+        "description": "The Ubuntu version for the VM. This will pick a fully patched image of this given Ubuntu version. Allowed values: 14.04.2-LTS, 15.04, 16.04-LTS, 16.10"
       }
   },
   "Size": {
@@ -191,6 +193,20 @@
               "destinationAddressPrefix": "[variables('staticPrivateIP')]",
               "access": "Allow",
               "priority": 105,
+              "direction": "Inbound"
+            }
+          },
+          {
+            "name": "6789",
+            "properties": {
+              "description": "Port 6789",
+              "protocol": "Tcp",
+              "sourcePortRange": "*",
+              "destinationPortRange": "6789",
+              "sourceAddressPrefix": "[parameters('ExternalIPofDevices')]",
+              "destinationAddressPrefix": "[variables('staticPrivateIP')]",
+              "access": "Allow",
+              "priority": 106,
               "direction": "Inbound"
             }
           }
