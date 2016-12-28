@@ -331,15 +331,18 @@
         "[concat('Microsoft.Compute/virtualMachines/', parameters('ServerName'))]"
       ],
       "properties": {
-        "publisher": "Microsoft.OSTCExtensions",
-        "type": "CustomScriptForLinux",
-        "typeHandlerVersion": "1.2",
+        "publisher": "Microsoft.Azure.Extensions",
+        "type": "CustomScript",
+        "typeHandlerVersion": "2.0",
+        "autoUpgradeMinorVersion": true,
         "settings": {
           "fileUris": [
             "[concat(variables('TemplateBase'),variables('ScriptFile'),variables('ScriptType'))]"
-          ],
-          "commandToExecute": "[concat('sh ',variables('ScriptFile'),variables('ScriptType'))]"
-        }
+          ]          
+        }, 
+		"protectedSettings": {
+			"commandToExecute": "[concat('sh ',variables('ScriptFile'),variables('ScriptType'))]"
+		}
       }
     }
   ]
